@@ -1,0 +1,18 @@
+Case 0:
+Large scale magnetic field, no spots
+
+Case 1:
+The simualtions that Max has now. 
+The total number of spots has been kept constant for the following cases. 
+
+Case I: 
+Same number of spots as used in case 0. Instead of using 3KG spots (+ve and -ve) I have now included +ve spots with field strengths of 4kG and -ve spots with field strength of 2 kG. Examples: jan08_spots_positive.s1, jan08_spots_positive.m1
+ 
+Case II: 
+Placing spots only in areas where large magnetic spots are present.e.g.  At regions of strong +ve field stronger +ve spots (3 kG) and weaker -ve spots (1kG) are used. Same for regions of -ve field where -ve spots are stronger.  Eample: In the case of oct13 +ve spots of 1 kG and -ve spots of 3 Kg are placed between phases 0.5 and 1, between latitudes 60 and -30. Between phases 0 and 0.45 +ve  spots of 3 kG and -ve spots of 1kG are placed. The distribution is still random but just localized to certain phase ranges.
+
+Case III:
++ve and -ve spots of equal strength randomly distributed from phases 0 to 1. e.g. jan08_caseIII.m1, jan08_caseIII.s1
+
+Case IV:
+Artifical  star with the same stellar parameters as ep eri. inclination, vsini, rotation period. etc. only spots are included. No large-scale field. 3 kG field for both +ve and -ve spots.  Only one simulation with random distribution of spots.
