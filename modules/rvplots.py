@@ -37,8 +37,9 @@ def savePeriodogramPlot(freqs, periods, powers, P, fit_p, subfolder=''):
 	plt.ylabel(r'power')
 	plt.legend(loc='best')
 
-	ensurePathExists(insertSubfolder(settings.periodogram_plot, subfolder))
-	plt.savefig(insertSubfolder(settings.periodogram_plot, subfolder))
+	if len(settings.periodogram_plot) > 0:
+		ensurePathExists(insertSubfolder(settings.periodogram_plot, subfolder))
+		plt.savefig(insertSubfolder(settings.periodogram_plot, subfolder))
 	if settings.periodogram_show == True:
 		plt.show()
 	else:
@@ -70,7 +71,7 @@ def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms,
 	ax2 = plt.subplot(gs[2], sharex=ax0)
 
 	ax0.plot(ts_full, rv_full_orig, 'b--', label='original curve')
-	ax0.plot(ts, rvs, 'b+', label='datapoints')
+	ax0.plot(ts, rvs, 'bo', label='datapoints', alpha=0.5)
 	ax0.plot(ts_full, rv_full_fit, 'r-', label='fit result')
 	ax0.legend(loc=1)
 
@@ -80,39 +81,10 @@ def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms,
 	# residuals
 	ax1.plot((tmin, tmax), (0, 0), 'b--', label='original curve')
 	ax1.plot(ts_full, rv_full_fit - rv_full_orig, 'r-', label='fit')
-	ax1.plot(ts, rvs - rv_orig, 'b+', label='data points')
+	ax1.plot(ts, rvs - rv_orig, 'bo', label='data points', alpha=0.5)
 
 	ax2.plot((tmin, tmax), (0, 0), 'r-', label='fit')
-	ax2.plot(ts, rvs - rv_fit, 'b+', label='data points')
-
-	if settings.fit_errorbar_alpha > 0.0:
-		rve0 = fitter._curve(ts_full, Mp[1]+Mp[2], Ms, P[1], e[1], w[1], v0[1])
-		rve1 = fitter._curve(ts_full, Mp[1]-Mp[2], Ms, P[1], e[1], w[1], v0[1])
-		rve2 = fitter._curve(ts_full, Mp[1], Ms, P[1]+P[2], e[1], w[1],  v0[1])
-		rve3 = fitter._curve(ts_full, Mp[1], Ms, P[1]-P[2], e[1], w[1],  v0[1])
-		rve4 = fitter._curve(ts_full, Mp[1], Ms, P[1], e[1]+e[2], w[1],  v0[1])
-		rve5 = fitter._curve(ts_full, Mp[1], Ms, P[1], e[1]-e[2], w[1],  v0[1])
-		rve6 = fitter._curve(ts_full, Mp[1], Ms, P[1], e[1], w[1]+w[2],  v0[1])
-		rve7 = fitter._curve(ts_full, Mp[1], Ms, P[1], e[1], w[1]-w[2],  v0[1])
-
-		rve_min = []
-		rve_max = []
-		for i in range(0,len(ts_full)):
-			arr = [rve0[i], rve1[i], rve2[i], rve3[i], rve4[i], rve5[i], rve6[i], rve7[i]]
-			rve_min.append(min(arr))
-			rve_max.append(max(arr))
-
-		rve_min = np.asarray(rve_min)
-		rve_max = np.asarray(rve_max)
-
-		#ax0.plot(ts_full, rve_min - fit_v0, 'r--')
-		#ax0.plot(ts_full, rve_max - fit_v0, 'r--')
-		ax0.fill_between(ts_full, rve_min, rve_max, \
-			facecolor='red', interpolate=True, alpha=0.08)
-		ax1.fill_between(ts_full, rve_min - rv_full_orig, rve_max - rv_full_orig, \
-			facecolor='red', interpolate=True, alpha=0.08)
-		ax2.fill_between(ts_full, rve_min - rv_full_fit, rve_max - rv_full_fit, \
-			facecolor='red', interpolate=True, alpha=0.08)
+	ax2.plot(ts, rvs - rv_fit, 'bo', label='data points', alpha=0.5)
 
 	ax0.set_ylabel(r'RV, m/s')
 	ax2.set_xlabel(r'time, days')
@@ -125,9 +97,10 @@ def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms,
 		tick.set_fontsize(0.0)
 	for tick in ax1.get_xticklabels():
 		tick.set_fontsize(0.0)
-		
-	ensurePathExists(insertSubfolder(settings.rv_plot, subfolder))
-	plt.savefig(insertSubfolder(settings.rv_plot, subfolder))
+	
+	if len(settings.rv_plot) > 0:
+		ensurePathExists(insertSubfolder(settings.rv_plot, subfolder))
+		plt.savefig(insertSubfolder(settings.rv_plot, subfolder))
 	if settings.rv_show:
 		plt.show()
 	else:

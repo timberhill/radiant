@@ -152,11 +152,11 @@ def runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR, subfolde
 	out( 'producing plots ...' )
 		
 	# LS periodigram
-	if len(settings.periodogram_plot) > 0:
+	if len(settings.periodogram_plot) > 0 or settings.periodogram_show:
 		savePeriodogramPlot(freqs, periods, powers, P, fit_p[0], subfolder=subfolder)
 
 	# orbit
-	if len(settings.rv_plot) > 0:
+	if len(settings.rv_plot) > 0 or settings.rv_show:
 		rv_full_fit = fitter._curve(ts_full, fit_Mp[0], Ms, fit_p[0], fit_e[0], fit_w[0], fit_v0[0])
 		rv_full_orig = fitter._curve(ts_full, Mps, Ms, P, e, w, v0)
 		rv_fit = fitter._curve(ts, fit_Mp[0], Ms, fit_p[0], fit_e[0], fit_w[0], fit_v0[0])

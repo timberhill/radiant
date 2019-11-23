@@ -87,10 +87,10 @@ class Settings():
 			self.rv_plot = value.strip()
 		elif name == 'rv_show':
 			self.rv_show = self.__getBoolean(value)
+		elif name == 'progressbar':
+			self.progressbar = self.__getBoolean(value)
 		elif name == 'profiles_path':
 			self.profiles_path = value.strip()
-		elif name == 'fit_errorbar_alpha':
-			self.fit_errorbar_alpha = float(value)
 
 		if name == 'periodogram_low':
 			self.periodogram_low = float(value)

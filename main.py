@@ -63,7 +63,7 @@ out( '[INPUT] v0 = ' + str(v0))
 out( '[INPUT] period = ' + str(truncate(P)) + ' [days]\n')
 
 out( 'generating orbit ...' )
-ts, rvs, ts0, rvs0 = gen.getRVData(progressbar=False, template='average', outfunction=out, times_full=ts_full)
+ts, rvs, ts0, rvs0 = gen.getRVData(progressbar=settings.progressbar, template='average', outfunction=out, times_full=ts_full)
 errs = np.asarray([1.0]*len(ts))
 
 # save rv data
@@ -75,7 +75,7 @@ if len(settings.rv_data) > 0:
 runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR)
 
 if settings.fit_stellar_rotation:
-	runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR, fit_rotation=True, subfolder='substracted_rotation')
+	runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR, fit_rotation=True, subfolder='subtracted_rotation')
 
 
 out( 'DONE\n\n' )
