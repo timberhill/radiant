@@ -7,11 +7,12 @@ from modules.helpers import out, ensurePathExists, savedatafile, truncate, inser
 from modules.rvplots import savePeriodogramPlot, saveRVPlot
 settings = Settings()
 
+
 def runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR, subfolder='', fit_rotation=False):
 	G = 8.88677e-10 # AU^3 Mearth^-1 day^-2
 
 	if fit_rotation:
-		out( 'substracting stellar rotation ...' )
+		out( 'subtracting stellar rotation ...' )
 		def sine(t, period, amp, phase):
 			return amp*np.sin(2*np.pi*t/period + phase)
 

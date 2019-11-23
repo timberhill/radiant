@@ -3,7 +3,6 @@ import warnings
 from modules.contracts import OrbitFitter
 from scipy.optimize import fsolve
 from scipy.optimize import curve_fit
-from lmfit import Model, Parameter, minimize, Parameters, report_fit
 from modules.settings import Settings
 
 class RVOrbitFitter(OrbitFitter):
