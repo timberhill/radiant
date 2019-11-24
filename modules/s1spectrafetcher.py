@@ -216,14 +216,6 @@ class S1SpectraFetcher():
 
 		afit, mufit, sfit, dyfit = [], [], [], []
 
-
-		# tt, ss   = self.__fit_sine(xaxis, sigmas,   period, new_x=[])
-		# tt2, ss2 = self.__fit_spline(xaxis, sigmas,   new_x=[])
-		# plt.plot(xaxis, sigmas, 'bo')
-		# plt.plot(tt, ss)
-		# plt.plot(tt2, ss2)
-		# plt.show()
-
 		if tfit[0] > max(xaxis):
 			out('Got a point above an interpolation range: ' + str(tfit))
 			return self.readers[len(self.readers)-1].getLine(rphase)
@@ -244,8 +236,6 @@ class S1SpectraFetcher():
 		else:
 			raise Exception('Dunno how to fit this way ("' + self.fit_type + '"). I can fit either "sine" or "spline".')
 			
-
-
 		# get the new profile
 		fluxes_fit = gauss(wls, afit[0], mufit[0], sfit[0], dyfit[0])
 
@@ -258,12 +248,3 @@ class S1SpectraFetcher():
 		# TODO : convert wls to kmps somehow. No idea what central wavelength to use. 
 
 		return wls, fluxes_fit_rv
-
-
-
-
-
-
-
-
-
