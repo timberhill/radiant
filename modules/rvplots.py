@@ -8,7 +8,7 @@ plt.rc('font', family='serif')
 settings = Settings()
 
 def savePeriodogramPlot(freqs, periods, powers, P, fit_p, subfolder=''):
-	plt.figure(figsize=(10,3))
+	plt.figure(figsize=(12,4))
 	xvals = freqs
 	plt.xlabel(r'frequency, day$^{-1}$')
 
@@ -35,6 +35,7 @@ def savePeriodogramPlot(freqs, periods, powers, P, fit_p, subfolder=''):
 	
 	plt.ylabel(r'power')
 	plt.legend(loc='best')
+	plt.tight_layout()
 
 	if len(settings.periodogram_plot) > 0:
 		ensurePathExists(insertSubfolder(settings.periodogram_plot, subfolder))
@@ -46,7 +47,6 @@ def savePeriodogramPlot(freqs, periods, powers, P, fit_p, subfolder=''):
 
 
 def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms, SNR, params, params_fit, params_err, subfolder=''):
-
 	# params = Mp, p, a, e, w, v0
 	Mplanet = [params[0], params_fit[0], params_err[0]]
 	P = [params[1], params_fit[1], params_err[1]]
@@ -55,7 +55,7 @@ def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms,
 	w = [params[4], params_fit[4], params_err[4]]
 	v0 = [params[5], params_fit[5], params_err[5]]
 
-	plt.figure(figsize=(10,5))
+	plt.figure(figsize=(12,6))
 	plt.suptitle(r'$M_\bigstar = ' + str(truncate(Ms)) + ' M_\odot$, $SNR=' + str(SNR) + '$\n' + \
 		'Original orbit: $M_p = ' + str(truncate(Mplanet[0])) + ' M_\oplus$, $P = ' + str(truncate(P[0])) + '$ days, $a = ' + str(truncate(a[0])) + \
 		'$ AU, $e = ' + str(truncate(e[0])) + '$, $w = '+ str(truncate(w[0])) + '$ rad, $v_0 = '+ str(truncate(v0[0])) + '$ m/s \n' + \
@@ -98,6 +98,8 @@ def saveRVPlot(ts, ts_full, rvs, rv_full_fit, rv_full_orig, rv_fit, rv_orig, Ms,
 	for tick in ax1.get_xticklabels():
 		tick.set_fontsize(0.0)
 	
+	plt.tight_layout()
+
 	if len(settings.rv_plot) > 0:
 		ensurePathExists(insertSubfolder(settings.rv_plot, subfolder))
 		plt.savefig(insertSubfolder(settings.rv_plot, subfolder))
