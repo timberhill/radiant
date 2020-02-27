@@ -123,7 +123,8 @@ class S1SpectraFetcher():
 			mx = max(xs)
 			new_x = np.arange(mn, mx, (mx-mn)/100)
 
-		new_y = interp1d(xs, ys, kind='cubic')(new_x)
+		interpolation_order = 3 if len(xs) > 3 else len(xs) - 1
+		new_y = interp1d(xs, ys, kind=interpolation_order)(new_x)
 		return new_x, new_y
 
 	def __dopplerShift(self, wls, fluxes, rv, continuum=1.0):
