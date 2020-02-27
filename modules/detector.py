@@ -110,6 +110,8 @@ def runDetector(ts, rvs, ts0, rvs0, errs, Ms, Mps, a, P, e, w, v0, SNR, subfolde
 	chi2reduced = err_sum / (len(rvs) - 5)
 
 	out( 'chi2 = ' + str(chi2reduced))
+	residuals = rvs - fitter._curve(ts, Mps, Ms, P, e, w, v0)
+	out( 'RMS  = ' + str(np.sqrt(np.mean(residuals**2))))
 
 
 	# save parameters

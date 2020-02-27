@@ -3,7 +3,7 @@ import numpy as np
 from modules.datagen import RVSpectraSimulator
 from modules.settings import Settings
 from modules.helpers import out, ensurePathExists, savedatafile, getObsPoints, truncate
-from detector import runDetector
+from modules.detector import runDetector
 settings = Settings()
 
 
