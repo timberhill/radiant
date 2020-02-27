@@ -4,6 +4,8 @@
 
 Simulate radial velocity observations of a star using phase-dependent line profile variations and simulated planets.
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/timberhill/radiant/binder)
+
 The simulation uses Keplerian parameters of a planet and LSD profiles to produce a set of observations -- Doppler-shifted LSD profiles, each having 100 points and centered at 5500Å. To simulate instrumental noise, Gaussian noise is added to the LSD profiles (signal-to-noise ratio of 10<sup>4</sup> introduces spread of approximately 1 m s<sup>-1</sup> in radial velocity). The observations between the availbale profiles are interpolated.
 
 ## Example
